@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <link rel="stylesheet" href="./index.css">
+<body>
+    <div id="navbar">
+        <a href="./index.html">Home</a>
+        <a href="./contact.html">Contact List</a>
+        <a href="./favourites.html">Favourites</a>
+    </div>
+    <h2 id="head"> Enter Your Contact Details</h2>
+    <form action="" id="form">
+        <input id="name" type="text" placeholder="Enter Your Name">
+        <input id="mobileNumber" type="number" placeholder="Enter Mobile Number">
+        <select id="type" name="type" id="type">
+            <option value="">Select Type</option>
+            <option value="Friends">Friends</option>
+            <option value="family">family</option>
+            <option value="others">others</option>
+        </select>
+        <input id="submit" type="submit">
+    </form>
+</body>
+<script>
+    document.querySelector("#form").addEventListener("submit",addContact)
+
+    var contactList=JSON.parse(localStorage.getItem("contactList")) || [];
+    function addContact(){
+        event.preventDefault();
+
+        var contact={
+            name:document.querySelector("#name").value,
+            mobileNumber:document.querySelector("#mobileNumber").value,
+            type:document.querySelector("#type").value,
+        }
+        contactList.push(contact);
+        localStorage.setItem("contactList",JSON.stringify(contactList))
+        alert("Contact Added!")
+    }
+</script>
+</html>
